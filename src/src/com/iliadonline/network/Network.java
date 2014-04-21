@@ -14,28 +14,31 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Runnable object that is used to handle the networking
+ */
 public class Network implements Runnable {
 	//Define client buffers to be just large enough to hold the largest possible message
 	public static final int BUFFER_SIZE = Protocol.MAX_MESSAGE_SIZE;
 	
-	private int port;
+	protected int port;
 	
 	//Set up a Selector and the Default server channel
-	private Selector serverSelector = Selector.open();
-	private ServerSocketChannel server = ServerSocketChannel.open();
+	protected Selector serverSelector = Selector.open();
+	protected ServerSocketChannel server = ServerSocketChannel.open();
 	
 	//In and Out queue
-	private ConcurrentLinkedQueue<Message> incomingQueue;
+	protected ConcurrentLinkedQueue<Message> incomingQueue;
 	
 	//Listener for Client connections
-	private ClientListener netListener;
+	protected ClientListener netListener;
 	
 	//Is the network still running, is it paused
-	private boolean running = false;
-	private boolean pause = false;
+	protected boolean running = false;
+	protected boolean pause = false;
 	
 	//The logger for this class
-	private final Logger logger = Logger.getLogger("com.iliadonline.network");
+	protected final Logger logger = Logger.getLogger("com.iliadonline.network");
 	
 	/**
 	 * Creates a Network object that will wait for connections
@@ -89,7 +92,7 @@ public class Network implements Runnable {
 	 * Helper for the run() method that initializes the server socket
 	 * @throws IOException
 	 */
-	private void initializeSocket() throws IOException
+	protected void initializeSocket() throws IOException
 	{
 		server.configureBlocking(false);
 		server.socket().bind(new InetSocketAddress(this.port));
@@ -101,7 +104,7 @@ public class Network implements Runnable {
 	 * Theoretically this should let the server be run and stopped and restarted in a new thread
 	 * TODO: Needs testing
 	 */
-	private void deinitializeSocket()
+	protected void deinitializeSocket()
 	{
 		try
 		{
@@ -114,7 +117,7 @@ public class Network implements Runnable {
 		}
 	}
 	
-	private void mainLoop()
+	protected void mainLoop()
 	{
 		running = true;
 		pause = false;
@@ -237,16 +240,6 @@ public class Network implements Runnable {
 							logger.info("Client connection closed unexpectedly");
 							
 							closeClient(gameClient, clientSocket, false);
-							/*
-							netListener.closeClient(gameClient, false);
-							try
-							{
-								clientSocket.close();
-							} catch (IOException e1)
-							{
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}*/
 							it.remove();
 							continue;	//Continue moves on to the next key (it)
 						}
@@ -287,7 +280,7 @@ public class Network implements Runnable {
 		}
 	}
 	
-	private void closeClient(Client client, Channel socketChannel, boolean graceful)
+	protected void closeClient(Client client, Channel socketChannel, boolean graceful)
 	{
 		netListener.closeClient(client, graceful);
 		try {
