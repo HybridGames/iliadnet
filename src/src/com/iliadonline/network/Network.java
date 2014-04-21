@@ -280,6 +280,8 @@ public class Network implements Runnable {
 				
 			}
 		}
+		
+		//TODO: Should have some cleanup code here
 	}
 	
 	protected void closeClient(Client client, Channel socketChannel, boolean graceful)
