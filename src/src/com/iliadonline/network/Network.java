@@ -42,7 +42,9 @@ public class Network implements Runnable {
 	
 	/**
 	 * Creates a Network object that will wait for connections
+	 * @param netListener A listener that allows the application to create a client for new connections
 	 * @param port
+	 * @throws IOException
 	 */
 	public Network(ClientListener netListener, int port) throws IOException
 	{

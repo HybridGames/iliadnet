@@ -5,7 +5,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * A Basic Client
- * Holds a list of Messages to be sent and messages received, as well read and write buffers to be used for holding partial messages.
+ * Holds a list of Messages to be sent.  Received messages are designed to be immediately dispatched from the core Network object.
+ * Also holds read and write buffers to be used for holding partial messages.
  * Helpful for networking, where a message may be sent in several packets.
  */
 public class Client

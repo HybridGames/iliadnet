@@ -4,9 +4,8 @@ import java.nio.channels.SocketChannel;
 
 /**
  * A listener interface that listens to the network for new clients and closed connections.
- *
+ * Typical usage would be to implement this interface to be alerted about new and closed connections.
  */
-
 public interface ClientListener 
 {
 	/**

@@ -10,8 +10,6 @@ import java.util.logging.Logger;
  */
 public class Message
 {
-
-	// private static logger
 	@SuppressWarnings("unused")
 	private static Logger logger;
 
@@ -55,9 +53,6 @@ public class Message
 	 */
 	public Message(final byte command, final byte[] data, Client client)
 	{
-		// logger.info("New Message Being Created - Command: " + command +
-		// " Data: " + data);
-
 		this.command = command;
 		this.data = data;
 		this.client = client;
@@ -84,12 +79,12 @@ public class Message
 	}
 
 	/**
-	 * An override for Object.toString() Provides the Message command and
-	 * address for the byte array of data
+	 * An override for Object.toString()
+	 * To make debug and logging easier
 	 */
 	@Override
 	public String toString()
 	{
-		return "Message(" + this.command + ") - " + this.data;
+		return "Message(" + this.command + ") - " + this.data.length + " bytes";
 	}
 }

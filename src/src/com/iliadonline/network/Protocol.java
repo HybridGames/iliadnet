@@ -8,7 +8,6 @@ import java.util.logging.Logger;
 /**
  * Protocol exposes a set of static methods for converting between Messages and ByteBuffers.<br />
  */
-
 public final class Protocol {
 	private static final byte MESSAGE_HEADER_COMMAND = 1;
 	private static final byte MESSAGE_HEADER_LENGTH = 2;
@@ -16,15 +15,7 @@ public final class Protocol {
 
 	@SuppressWarnings("unused")
 	private static Logger logger = Logger.getLogger("net.hybridgames.netserver.Protocol");
-	
-	/**
-	 *
-	 */
-	public Protocol()
-	{
-		//TODO: shifting away from Singleton
-	}
-	
+		
 	/**
 	 * Creates a ByteBuffer from a Message object.<br />
 	 * ByteBuffer is flipped at end, so that position = 0 and limit = the end of the message<br />
